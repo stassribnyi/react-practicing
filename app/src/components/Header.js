@@ -1,11 +1,11 @@
 import React from 'react';
 
-import WelcomeTitle from './Title/WelcomeTitle.js';
+import Title from './Title/Title';
 
 export default class Header extends React.Component {
     render() {
         return (
-            <WelcomeTitle />
+            <Title title={this.props.title} />
         );
     }
 }
