@@ -12,17 +12,17 @@ export default class App extends React.Component {
         };
     }
 
-    componentDidMount() {
-        setTimeout(() => this.setState({
-            title: 'Welcome, Stas'
-        })
-            , 5000);
+    changeTitle(title) {
+        this.setState({ title });
     }
 
     render() {
         return (
             <div>
-                <Header title={this.state.title} />
+                <Header
+                    title={this.state.title}
+                    changeTitle={(title) => this.changeTitle(title)}
+                />
                 <Footer />
             </div>
         );
