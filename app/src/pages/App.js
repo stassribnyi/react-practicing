@@ -1,7 +1,9 @@
 import React from 'react';
+import Link from 'react-router-dom';
 
-import Header from './Header.js';
-import Footer from './Footer.js';
+
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default class App extends React.Component {
     constructor() {
@@ -23,6 +25,8 @@ export default class App extends React.Component {
                     title={this.state.title}
                     changeTitle={(title) => this.changeTitle(title)}
                 />
+                {this.props.children}
+                {/* <Link to="archives">Archives</Link> */}
                 <Footer />
             </div>
         );
