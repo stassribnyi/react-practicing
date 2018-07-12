@@ -15,11 +15,12 @@ const routes = [
         component: App,
         routes: [
             {
+                exact: true,
                 path: '/featured',
                 component: Featured
             },
             {
-                path: '/archives',
+                path: '/archives/:article?',
                 component: Archives
             },
             {
