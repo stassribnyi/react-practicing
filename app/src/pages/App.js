@@ -6,9 +6,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default class App extends React.Component {
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
+        
         this.state = {
             title: 'Welcome!'
         };
