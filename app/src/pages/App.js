@@ -14,7 +14,6 @@ export default class App extends React.Component {
                 <div className="container top-buffer">
                     <div className="row">
                         <div className="col-lg-12">
-                            <h1>News</h1>
                             {
                                 this.props.routes.map((route) => (<RouteWithSubRoutes key={route.path} {...route} />))
                             }

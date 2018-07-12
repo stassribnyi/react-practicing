@@ -5,8 +5,8 @@ import { HashRouter as Router, Route, Link } from "react-router-dom";
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 
 import App from './pages/App';
-import Archives from './pages/Archives';
-import Featured from './pages/Featured';
+import Todos from './pages/Todos';
+import Favorites from './pages/Favorites';
 import Settings from './pages/Settings';
 
 const routes = [
@@ -16,12 +16,12 @@ const routes = [
         routes: [
             {
                 exact: true,
-                path: '/featured',
-                component: Featured
+                path: '/favorites',
+                component: Favorites
             },
             {
-                path: '/archives/:article?',
-                component: Archives
+                path: '/todos/:todo?',
+                component: Todos
             },
             {
                 path: '/settings',

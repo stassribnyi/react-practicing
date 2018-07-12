@@ -35,10 +35,10 @@ export default class Navigation extends React.Component {
                     <div className={`navbar-collapse ${navClass}`}>
                         <ul className="nav navbar-nav">
                             <li>
-                                <NavLink to="/featured" activeClassName="active-menu" onClick={this.toggleCollapse}>Featured</NavLink >
+                                <NavLink to="/todos" activeClassName="active-menu" onClick={this.toggleCollapse}>Todos</NavLink >
                             </li>
                             <li>
-                                <NavLink to="/archives" activeClassName="active-menu" onClick={this.toggleCollapse}>Archives</NavLink >
+                                <NavLink to="/favorites" activeClassName="active-menu" onClick={this.toggleCollapse}>Favorites</NavLink >
                             </li>
                             <li>
                                 <NavLink to="/settings" activeClassName="active-menu" onClick={this.toggleCollapse}>Settings</NavLink>
