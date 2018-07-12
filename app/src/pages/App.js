@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from 'react-router-dom';
 
+import RouteWithSubRoutes from '../RouteWithSubRoutes'
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -25,8 +25,9 @@ export default class App extends React.Component {
                     title={this.state.title}
                     changeTitle={(title) => this.changeTitle(title)}
                 />
-                {this.props.children}
-                {/* <Link to="archives">Archives</Link> */}
+                {
+                    this.props.routes.map((route) => (<RouteWithSubRoutes key={route.path} {...route} />))
+                }
                 <Footer />
             </div>
         );
