@@ -11,6 +11,7 @@ export default class Todos extends React.Component {
 
         this.state = {
             todos: TodoStore.getAll(),
+            disabled: true,
             newTodo: ''
         };
 
@@ -35,8 +36,13 @@ export default class Todos extends React.Component {
     }
 
     createTodo() {
-        if (this.state.newTodo) {
+        if (!this.state.disabled) {
             TodoActions.createTodo(this.state.newTodo);
+
+            this.setState({
+                newTodo: '',
+                disabled: true
+            })
         }
     }
 
@@ -48,7 +54,8 @@ export default class Todos extends React.Component {
         const text = event.target.value;
 
         this.setState({
-            newTodo: text
+            newTodo: text,
+            disabled: text.length === 0
         });
     }
 
@@ -69,7 +76,7 @@ export default class Todos extends React.Component {
                             <input className="form-control" value={this.state.newTodo} onChange={this.handleChange} />
                         </label>
                     </div>
-                    <button className="btn btn-info" onClick={this.createTodo}>Create</button>
+                    <button className="btn btn-info" disabled={this.state.disabled} onClick={this.createTodo}>Create</button>
                 </div>
                 <ul className="list-group top-buffer">
                     {TodoComponents}
