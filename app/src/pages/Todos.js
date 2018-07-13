@@ -20,6 +20,7 @@ export default class Todos extends React.Component {
     }
 
     componentWillMount() {
+        TodoActions.fetchTodos();
         TodoStore.on('change', this.getTodos);
     }
 
@@ -61,9 +62,16 @@ export default class Todos extends React.Component {
         return (
             <div>
                 <h1>Todos</h1>
-                <input value={this.state.newTodo} onChange={this.handleChange} />
-                <button onClick={this.createTodo}>Create ToDo</button>
-                <ul>
+                <div>
+                    <div className="input-group">
+                        <label>
+                            Todo text:
+                            <input className="form-control" value={this.state.newTodo} onChange={this.handleChange} />
+                        </label>
+                    </div>
+                    <button className="btn btn-info" onClick={this.createTodo}>Create</button>
+                </div>
+                <ul className="list-group top-buffer">
                     {TodoComponents}
                 </ul>
             </div>

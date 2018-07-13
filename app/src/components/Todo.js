@@ -4,13 +4,15 @@ export default class Todo extends React.Component {
     render() {
         const { text, onDelete } = this.props;
         const crossStyle = {
-            cursor: 'pointer'
+            cursor: 'pointer',
+            backgroundColor: '#dd5600'
         };
 
         return (
-            <li>
+            <li className="list-group-item">
                 {text}
-                <span onClick={onDelete} style={crossStyle}>&nbsp;&#x2715;</span>
+                &nbsp;
+                <span className="badge" onClick={onDelete} style={crossStyle}>X</span>
             </li>
         );
     }

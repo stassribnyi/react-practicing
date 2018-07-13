@@ -1,32 +1,18 @@
 import { EventEmitter } from 'events';
+
+import TodoConstants from '../constants/TodoConstants';
 import TodoDispatcher from '../dispatchers/TodoDispatcher';
 
 class TodoStore extends EventEmitter {
     constructor() {
         super();
-        this.todos = [
-            {
-                id: 1531413197,
-                text: 'Learn flux',
-                complete: false
-            },
-            {
-                id: 1531413283,
-                text: 'Practice React',
-                complete: false
-            }
-        ];
+        this.todos = [];
     }
 
-    createTodo(text) {
-        const id = Date.now();
-        this.todos.push({
-            id,
-            text,
-            complete: false
-        });
+    createTodo(todo) {
+        this.todos.push(todo);
 
-        this.emit('change');
+        this.emitChange();
     }
 
     deleteTodo(id) {
@@ -34,6 +20,10 @@ class TodoStore extends EventEmitter {
 
         this.todos.splice(index, 1);
 
+        this.emitChange();
+    }
+
+    emitChange() {
         this.emit('change');
     }
 
@@ -43,20 +33,29 @@ class TodoStore extends EventEmitter {
 
     handleActions(action) {
         switch (action.type) {
-            case 'CREATE_TODO':
-                this.createTodo(action.text);
+            case TodoConstants.CREATE_TODO:
+                this.createTodo(action.todo);
                 break;
-            case 'DELETE_TODO':
+            case TodoConstants.DELETE_TODO:
                 this.deleteTodo(action.id);
+                break;
+            case TodoConstants.FETCH_TODOS:
+                this.fetchTodos(action.todos);
                 break;
             default:
                 break;
         }
+    }
+
+    fetchTodos(todos) {
+        this.todos = [...todos];
+
+        this.emitChange();
     }
 }
 
 const todoStore = new TodoStore();
 
 TodoDispatcher.register(todoStore.handleActions.bind(todoStore));
-window.dispather = TodoDispatcher;
+
 export default todoStore;

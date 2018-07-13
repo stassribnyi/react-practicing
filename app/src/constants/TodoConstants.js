@@ -1,0 +1,9 @@
+const CREATE_TODO = 'CREATE_TODO';
+const DELETE_TODO = 'DELETE_TODO';
+const FETCH_TODOS = 'FETCH_TODOS';
+
+export default {
+    CREATE_TODO,
+    DELETE_TODO,
+    FETCH_TODOS
+}
