@@ -1,11 +1,15 @@
 {
-  "name": "app",
+  "name": "todo-list-react",
   "version": "1.0.0",
   "license": "ISC",
-  "main": "index.js",
   "scripts": {
-    "server": "parcel | json-server database.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "ui": "parcel ./index.html --port 3000",
+    "json-server": "json-server database.json",
+    "serve": "npm run json-server | npm run ui",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build --public-url /todo-list-react/ --no-source-maps --out-dir dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -17,8 +21,16 @@
     "react-router-dom": "^4.4.0"
   },
   "devDependencies": {
-    "babel-preset-stage-3": "^6.24.1",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
     "json-server": "^0.14.2",
     "parcel": "^1.12.2"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "homepage": "https://stassribnyi.github.io/todo-list-react"
 }
