@@ -20,7 +20,7 @@
     },
     {
       "text": "Have some rest!!!!",
-      "complete": false,
+      "complete": true,
       "favorite": false,
       "id": 11
     },

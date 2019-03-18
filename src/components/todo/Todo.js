@@ -5,21 +5,24 @@ import './Todo.css';
 export default props => {
   const { text, complete, favorite, onComplete, onFavorite, onDelete } = props;
 
+  const completeClass = [
+    'complete',
+    complete ? 'complete-checked' : 'complete-unchecked'
+  ].join(' ');
+  const completeTitle = complete ? 'Unmark as complete' : 'Mark as complete';
+
   const favoriteClass = [
     'favorite',
     favorite ? 'favorite-checked' : 'favorite-unchecked'
   ].join(' ');
-
-  const completeTitle = complete ? 'Unmark as complete' : 'Mark as complete';
   const favoriteTitle = favorite ? 'Remove from favorites' : 'Add to favorites';
 
   return (
     <li className="todo list-group-item">
-      <input
-        type="checkbox"
-        checked={complete}
+      <span
         title={completeTitle}
-        onChange={onComplete}
+        className={completeClass}
+        onClick={onComplete}
       />
       <span className="todo-description">{text}</span>
       <span
