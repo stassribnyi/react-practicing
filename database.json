@@ -1,28 +1,33 @@
 {
   "todos": [
     {
-      "id": 8,
       "text": "Master with React",
-      "complete": false
+      "complete": false,
+      "favorite": false,
+      "id": 8
     },
     {
-      "id": 9,
       "text": "Learn Redux",
-      "complete": false
+      "complete": false,
+      "favorite": false,
+      "id": 9
     },
     {
-      "id": 10,
       "text": "Understand Flux",
-      "complete": true
+      "complete": true,
+      "favorite": false,
+      "id": 10
     },
     {
       "text": "Have some rest!!!!",
       "complete": false,
+      "favorite": false,
       "id": 11
     },
     {
       "text": "😎😎😎",
       "complete": false,
+      "favorite": false,
       "id": 12
     }
   ]

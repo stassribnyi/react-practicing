@@ -2,12 +2,13 @@ import dispatcher from '../AppDispatcher';
 
 import todoApi from '../apis/todoApi';
 
-import { CREATE_TODO, DELETE_TODO, FETCH_TODOS } from './types';
+import { CREATE_TODO, DELETE_TODO, UPDATE_TODO, FETCH_TODOS } from './types';
 
 export function createTodo(text) {
   const todoToAdd = {
     text,
-    complete: false
+    complete: false,
+    favorite: false
   };
 
   todoApi.createTodo(todoToAdd).then(({ data }) => {
@@ -23,6 +24,28 @@ export function deleteTodo(id) {
     dispatcher.dispatch({
       type: DELETE_TODO,
       payload: id
+    });
+  });
+}
+
+export function toggleFavorite(todo) {
+  const todoToUpdate = { ...todo, favorite: !todo.favorite };
+
+  todoApi.updateTodo(todoToUpdate).then(({ data }) => {
+    dispatcher.dispatch({
+      type: UPDATE_TODO,
+      payload: data
+    });
+  });
+}
+
+export function toggleComplete(todo) {
+  const todoToUpdate = { ...todo, complete: !todo.complete };
+
+  todoApi.updateTodo(todoToUpdate).then(({ data }) => {
+    dispatcher.dispatch({
+      type: UPDATE_TODO,
+      payload: data
     });
   });
 }

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 import './Todos.css';
 
-import Todo from '../../components/Todo';
-
-import { FormControlInput } from '../../components';
+import { FormControlInput, Todo } from '../../components';
 
 import { TodoStore as store } from '../../stores';
 import * as actions from '../../actions/todoActions';
@@ -16,7 +14,7 @@ export default class Todos extends Component {
     this.state = {
       todos: store.getAll(),
       disabled: true,
-      newTodo: ''
+      todoToAdd: ''
     };
 
     this.getTodos = this.getTodos.bind(this);
@@ -35,10 +33,10 @@ export default class Todos extends Component {
       return;
     }
 
-    actions.createTodo(this.state.newTodo);
+    actions.createTodo(this.state.todoToAdd);
 
     this.setState({
-      newTodo: '',
+      todoToAdd: '',
       disabled: true
     });
   }
@@ -47,12 +45,20 @@ export default class Todos extends Component {
     actions.deleteTodo(id);
   }
 
-  handleChange(event) {
-    const text = event.target.value;
+  toggleFavorite(todo) {
+    actions.toggleFavorite(todo);
+  }
+
+  toggleComplete(todo) {
+    actions.toggleComplete(todo);
+  }
+
+  handleChange({ target }) {
+    const todoDescription = target.value;
 
     this.setState({
-      newTodo: text,
-      disabled: text.length === 0
+      todoToAdd: todoDescription,
+      disabled: todoDescription.length === 0
     });
   }
 
@@ -60,16 +66,22 @@ export default class Todos extends Component {
     const { todos } = this.state;
 
     const TodoComponents = todos.map(todo => (
-      <Todo key={todo.id} {...todo} onDelete={() => this.deleteTodo(todo.id)} />
+      <Todo
+        key={todo.id}
+        {...todo}
+        onDelete={() => this.deleteTodo(todo.id)}
+        onComplete={() => this.toggleComplete(todo)}
+        onFavorite={() => this.toggleFavorite(todo)}
+      />
     ));
 
     return (
       <div>
-        <h1>Todos</h1>
+        <h1>All Todos</h1>
         <div>
           <FormControlInput
             label="Todo text:"
-            value={this.state.newTodo}
+            value={this.state.todoToAdd}
             onChange={this.handleChange}
           />
           <button

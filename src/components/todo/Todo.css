@@ -1,0 +1,36 @@
+.todo {
+  display: flex;
+  align-items: start;
+}
+
+.todo .todo-description {
+  flex: 1;
+}
+
+.todo .favorite {
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+  margin: 3px 7px;
+  box-sizing: border-box;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.todo .favorite.favorite-checked {
+  background-image: url('../../assets/favorite-checked.png');
+}
+
+.todo .favorite.favorite-unchecked {
+  background-image: url('../../assets/favorite-unchecked.png');
+}
+
+.todo .badge.badge-delete {
+  cursor: pointer;
+  min-width: 1.5em;
+  margin-left: 8px;
+  font-size: inherit;
+  font-family: sans-serif;
+}

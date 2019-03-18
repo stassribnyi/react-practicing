@@ -2,7 +2,12 @@ import { EventEmitter } from 'events';
 
 import dispatcher from '../AppDispatcher';
 
-import { CREATE_TODO, FETCH_TODOS, DELETE_TODO } from '../actions/types';
+import {
+  CREATE_TODO,
+  FETCH_TODOS,
+  UPDATE_TODO,
+  DELETE_TODO
+} from '../actions/types';
 
 const initialState = [];
 
@@ -31,6 +36,14 @@ class TodoStore extends EventEmitter {
     this.emitChange();
   }
 
+  updateTodo(todoToUpdate) {
+    const index = this.todos.findIndex(todo => todo.id === todoToUpdate.id);
+
+    this.todos.splice(index, 1, todoToUpdate);
+
+    this.emitChange();
+  }
+
   fetchTodos(todos) {
     this.todos = [...todos];
 
@@ -45,6 +58,10 @@ class TodoStore extends EventEmitter {
       }
       case DELETE_TODO: {
         this.deleteTodo(payload);
+        break;
+      }
+      case UPDATE_TODO: {
+        this.updateTodo(payload);
         break;
       }
       case FETCH_TODOS: {
