@@ -1,61 +1,74 @@
 import { EventEmitter } from 'events';
 
-import TodoConstants from '../constants/TodoConstants';
-import TodoDispatcher from '../dispatchers/TodoDispatcher';
+import dispatcher from '../AppDispatcher';
+
+import { CREATE_TODO, FETCH_TODOS, DELETE_TODO } from '../actions/types';
+
+const initialState = [];
 
 class TodoStore extends EventEmitter {
-    constructor() {
-        super();
-        this.todos = [];
+  constructor(state = initialState) {
+    super();
+
+    this.todos = state;
+  }
+
+  getAll() {
+    return this.todos;
+  }
+
+  createTodo(todo) {
+    this.todos.push(todo);
+
+    this.emitChange();
+  }
+
+  deleteTodo(id) {
+    const index = this.todos.findIndex(todo => todo.id === id);
+
+    this.todos.splice(index, 1);
+
+    this.emitChange();
+  }
+
+  fetchTodos(todos) {
+    this.todos = [...todos];
+
+    this.emitChange();
+  }
+
+  handleActions({ type, payload }) {
+    switch (type) {
+      case CREATE_TODO: {
+        this.createTodo(payload);
+        break;
+      }
+      case DELETE_TODO: {
+        this.deleteTodo(payload);
+        break;
+      }
+      case FETCH_TODOS: {
+        this.fetchTodos(payload);
+        break;
+      }
+      default:
+        break;
     }
+  }
 
-    createTodo(todo) {
-        this.todos.push(todo);
-
-        this.emitChange();
-    }
-
-    deleteTodo(id) {
-        const index = this.todos.findIndex((todo) => todo.id === id);
-
-        this.todos.splice(index, 1);
-
-        this.emitChange();
-    }
-
-    emitChange() {
-        this.emit('change');
-    }
-
-    getAll() {
-        return this.todos;
-    }
-
-    handleActions(action) {
-        switch (action.type) {
-            case TodoConstants.CREATE_TODO:
-                this.createTodo(action.todo);
-                break;
-            case TodoConstants.DELETE_TODO:
-                this.deleteTodo(action.id);
-                break;
-            case TodoConstants.FETCH_TODOS:
-                this.fetchTodos(action.todos);
-                break;
-            default:
-                break;
-        }
-    }
-
-    fetchTodos(todos) {
-        this.todos = [...todos];
-
-        this.emitChange();
-    }
+  emitChange() {
+    this.emit('change');
+  }
 }
 
 const todoStore = new TodoStore();
 
-TodoDispatcher.register(todoStore.handleActions.bind(todoStore));
+dispatcher.register(todoStore.handleActions.bind(todoStore));
 
-export default todoStore;
+const storeProxy = {
+  getAll: () => todoStore.getAll(),
+  on: (...params) => todoStore.on(...params),
+  removeListener: (...params) => todoStore.removeListener(...params)
+};
+
+export default storeProxy;

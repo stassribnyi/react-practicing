@@ -1,36 +1,37 @@
-import TodoDispatcher from '../dispatchers/TodoDispatcher'
+import dispatcher from '../AppDispatcher';
 
-import TodoApi from '../apis/TodoApi';
-import TodoConstants from '../constants/TodoConstants';
+import todoApi from '../apis/todoApi';
+
+import { CREATE_TODO, DELETE_TODO, FETCH_TODOS } from './types';
 
 export function createTodo(text) {
-    let newTodo = {
-        text,
-        complete: false
-    };
+  const todoToAdd = {
+    text,
+    complete: false
+  };
 
-    TodoApi.createTodo(newTodo).then((response) => {
-        TodoDispatcher.dispatch({
-            type: TodoConstants.CREATE_TODO,
-            todo: response.data
-        });
+  todoApi.createTodo(todoToAdd).then(({ data }) => {
+    dispatcher.dispatch({
+      type: CREATE_TODO,
+      payload: data
     });
+  });
 }
 
 export function deleteTodo(id) {
-    TodoApi.deleteTodo(id).then((response) => {
-        TodoDispatcher.dispatch({
-            type: TodoConstants.DELETE_TODO,
-            id
-        });
+  todoApi.deleteTodo(id).then(() => {
+    dispatcher.dispatch({
+      type: DELETE_TODO,
+      payload: id
     });
+  });
 }
 
 export function fetchTodos() {
-    TodoApi.getAll().then((response) => {
-        TodoDispatcher.dispatch({
-            type: TodoConstants.FETCH_TODOS,
-            todos: response.data
-        });
+  todoApi.getAll().then(({ data }) => {
+    dispatcher.dispatch({
+      type: FETCH_TODOS,
+      payload: data
     });
+  });
 }

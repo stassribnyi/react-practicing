@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import RouteWithSubRoutes from '../../RouteWithSubRoutes';
-
 import Footer from '../../components/Footer';
 import Navigation from '../../components/Navigation';
+import RouteWithSubRoutes from '../../components/RouteWithSubRoutes';
 
 export default class App extends Component {
   render() {
     return (
-      <div className="ite">
+      <div className="App">
         <Navigation />
 
         <div className="container top-buffer">

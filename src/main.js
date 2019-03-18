@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import RouteWithSubRoutes from './RouteWithSubRoutes';
+import RouteWithSubRoutes from './components/RouteWithSubRoutes';
 
 import { App, Todos, Favorites, Settings } from './pages';
 

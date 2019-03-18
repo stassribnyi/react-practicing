@@ -4,15 +4,17 @@ import './Todos.css';
 
 import Todo from '../../components/Todo';
 
-import * as TodoActions from '../../actions/TodoActions';
-import TodoStore from '../../stores/TodoStore';
+import { FormControlInput } from '../../components';
+
+import { TodoStore as store } from '../../stores';
+import * as actions from '../../actions/todoActions';
 
 export default class Todos extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      todos: TodoStore.getAll(),
+      todos: store.getAll(),
       disabled: true,
       newTodo: ''
     };
@@ -22,34 +24,27 @@ export default class Todos extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillMount() {
-    TodoActions.fetchTodos();
-    TodoStore.on('change', this.getTodos);
-  }
-
-  componentWillUnmount() {
-    TodoStore.removeListener('change', this.getTodos);
-  }
-
   getTodos() {
     this.setState({
-      todos: TodoStore.getAll()
+      todos: store.getAll()
     });
   }
 
   createTodo() {
-    if (!this.state.disabled) {
-      TodoActions.createTodo(this.state.newTodo);
-
-      this.setState({
-        newTodo: '',
-        disabled: true
-      });
+    if (this.state.disabled) {
+      return;
     }
+
+    actions.createTodo(this.state.newTodo);
+
+    this.setState({
+      newTodo: '',
+      disabled: true
+    });
   }
 
   deleteTodo(id) {
-    TodoActions.deleteTodo(id);
+    actions.deleteTodo(id);
   }
 
   handleChange(event) {
@@ -72,16 +67,11 @@ export default class Todos extends Component {
       <div>
         <h1>Todos</h1>
         <div>
-          <div className="input-group">
-            <label>
-              Todo text:
-              <input
-                className="form-control"
-                value={this.state.newTodo}
-                onChange={this.handleChange}
-              />
-            </label>
-          </div>
+          <FormControlInput
+            label="Todo text:"
+            value={this.state.newTodo}
+            onChange={this.handleChange}
+          />
           <button
             className="btn btn-info"
             disabled={this.state.disabled}
@@ -93,5 +83,14 @@ export default class Todos extends Component {
         <ul className="list-group top-buffer">{TodoComponents}</ul>
       </div>
     );
+  }
+
+  componentWillMount() {
+    actions.fetchTodos();
+    store.on('change', this.getTodos);
+  }
+
+  componentWillUnmount() {
+    store.removeListener('change', this.getTodos);
   }
 }
