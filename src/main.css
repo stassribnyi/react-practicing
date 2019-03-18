@@ -1,0 +1,13 @@
+* {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.navbar-inverse .navbar-nav > li > .active-menu,
+.navbar-inverse .navbar-nav > li > .active-menu:hover,
+.navbar-inverse .navbar-nav > li > .active-menu:focus {
+  background-color: #dd5600;
+}
+
+.top-buffer {
+  margin-top: 60px;
+}
