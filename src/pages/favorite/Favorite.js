@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import './Settings.css';
+import './Favorite.css';
 
-export default class Settings extends Component {
+export default class Favorite extends Component {
   render() {
     return (
       <div>
-        <h1>Settings</h1>
+        <h1>Favorite</h1>
       </div>
     );
   }

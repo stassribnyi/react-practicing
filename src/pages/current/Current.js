@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import './Todos.css';
+import './Current.css';
 
 import { FormControlInput, Todo } from '../../components';
 
 import { TodoStore as store } from '../../stores';
 import * as actions from '../../actions/todoActions';
 
-export default class Todos extends Component {
+export default class Current extends Component {
   constructor(props) {
     super(props);
 

@@ -1,6 +1,6 @@
-import Favorites from './favorites';
-import Settings from './settings';
-import Todos from './todos';
+import Favorite from './favorite';
+import Complete from './complete';
+import Current from './Current';
 import App from './app';
 
-export { Favorites, Settings, Todos, App };
+export { Favorite, Complete, Current, App };

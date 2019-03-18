@@ -7,6 +7,10 @@ import Navigation from '../../components/Navigation';
 import RouteWithSubRoutes from '../../components/RouteWithSubRoutes';
 
 export default class App extends Component {
+  componentWillMount() {
+    this.props.history.push('/current');
+  }
+
   render() {
     return (
       <div className="App">

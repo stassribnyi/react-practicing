@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import RouteWithSubRoutes from './components/RouteWithSubRoutes';
 
-import { App, Todos, Favorites, Settings } from './pages';
+import { App, Current, Favorite, Complete } from './pages';
 
 const routes = [
   {
@@ -12,17 +12,16 @@ const routes = [
     component: App,
     routes: [
       {
-        exact: true,
-        path: '/favorites',
-        component: Favorites
+        path: '/current',
+        component: Current
       },
       {
-        path: '/todos/:todo?',
-        component: Todos
+        path: '/favorite',
+        component: Favorite
       },
       {
-        path: '/settings',
-        component: Settings
+        path: '/complete',
+        component: Complete
       }
     ]
   }
