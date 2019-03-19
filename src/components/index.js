@@ -1,4 +1,5 @@
 import FormControlInput from './form-control-input';
+import TodoItemForm from './todo-item-form';
 import TodoList from './todo-list';
 
-export { FormControlInput, TodoList };
+export { FormControlInput, TodoItemForm, TodoList };

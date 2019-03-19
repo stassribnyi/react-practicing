@@ -1,0 +1,16 @@
+.TodoItemForm {
+  display: flex;
+  padding-top: 1em;
+  flex-direction: column;
+}
+
+.TodoItemForm .btn {
+  align-self: end;
+  width: 10em;
+}
+
+@media (max-width: 414px) {
+  .TodoItemForm .btn {
+    width: 100%;
+  }
+}
