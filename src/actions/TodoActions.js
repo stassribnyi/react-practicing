@@ -2,7 +2,7 @@ import dispatcher from '../AppDispatcher';
 
 import todoApi from '../apis/todoApi';
 
-import { CREATE_TODO, DELETE_TODO, UPDATE_TODO, FETCH_TODOS } from './types';
+import { CREATE_TODO, DELETE_TODO, UPDATE_TODO, FETCH_TODO } from './types';
 
 export function createTodo(text) {
   const todoToAdd = {
@@ -50,10 +50,10 @@ export function toggleComplete(todo) {
   });
 }
 
-export function fetchTodos() {
+export function fetchTodo() {
   todoApi.getAll().then(({ data }) => {
     dispatcher.dispatch({
-      type: FETCH_TODOS,
+      type: FETCH_TODO,
       payload: data
     });
   });

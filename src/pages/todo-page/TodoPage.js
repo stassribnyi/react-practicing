@@ -12,19 +12,19 @@ export default class TodoPage extends Component {
     super(props);
 
     this.state = {
-      todos: []
+      todoList: []
     };
 
-    this.fetchTodos = this.fetchTodos.bind(this);
+    this.fetchTodo = this.fetchTodo.bind(this);
 
     this.deleteTodo = this.deleteTodo.bind(this);
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.toggleComplete = this.toggleComplete.bind(this);
   }
 
-  fetchTodos() {
+  fetchTodo() {
     this.setState({
-      todos: store.getAll(this.props.todoCondition)
+      todoList: store.getAll(this.props.todoCondition)
     });
   }
 
@@ -41,13 +41,13 @@ export default class TodoPage extends Component {
   }
 
   render() {
-    const { todos } = this.state;
+    const { todoList } = this.state;
 
     return (
       <div className="TodoPage">
-        {todos.length ? (
+        {todoList.length ? (
           <TodoList
-            items={this.state.todos}
+            items={this.state.todoList}
             onDelete={this.deleteTodo}
             onComplete={this.toggleComplete}
             onFavorite={this.toggleFavorite}
@@ -55,7 +55,7 @@ export default class TodoPage extends Component {
         ) : (
           <div className="alert alert-success">
             <strong>Hey, nothing wrong!</strong>
-            <h2 className="text-info">No such todos found 📖</h2>
+            <h2 className="text-info">No such To-Do found 📖</h2>
           </div>
         )}
       </div>
@@ -63,11 +63,11 @@ export default class TodoPage extends Component {
   }
 
   componentWillMount() {
-    actions.fetchTodos();
-    store.on('change', this.fetchTodos);
+    actions.fetchTodo();
+    store.on('change', this.fetchTodo);
   }
 
   componentWillUnmount() {
-    store.removeListener('change', this.fetchTodos);
+    store.removeListener('change', this.fetchTodo);
   }
 }

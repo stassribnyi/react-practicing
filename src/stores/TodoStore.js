@@ -4,7 +4,7 @@ import dispatcher from '../AppDispatcher';
 
 import {
   CREATE_TODO,
-  FETCH_TODOS,
+  FETCH_TODO,
   UPDATE_TODO,
   DELETE_TODO
 } from '../actions/types';
@@ -15,41 +15,41 @@ class TodoStore extends EventEmitter {
   constructor(state = initialState) {
     super();
 
-    this.todos = state;
+    this.todoList = state;
   }
 
   getAll(condition) {
     if (typeof condition !== 'function') {
-      return this.todos;
+      return this.todoList;
     }
 
-    return this.todos.filter(condition);
+    return this.todoList.filter(condition);
   }
 
   createTodo(todo) {
-    this.todos.push(todo);
+    this.todoList.push(todo);
 
     this.emitChange();
   }
 
   deleteTodo(id) {
-    const index = this.todos.findIndex(todo => todo.id === id);
+    const index = this.todoList.findIndex(todo => todo.id === id);
 
-    this.todos.splice(index, 1);
+    this.todoList.splice(index, 1);
 
     this.emitChange();
   }
 
   updateTodo(todoToUpdate) {
-    const index = this.todos.findIndex(todo => todo.id === todoToUpdate.id);
+    const index = this.todoList.findIndex(todo => todo.id === todoToUpdate.id);
 
-    this.todos.splice(index, 1, todoToUpdate);
+    this.todoList.splice(index, 1, todoToUpdate);
 
     this.emitChange();
   }
 
-  fetchTodos(todos) {
-    this.todos = [...todos];
+  fetchTodo(todoList) {
+    this.todoList = [...todoList];
 
     this.emitChange();
   }
@@ -68,8 +68,8 @@ class TodoStore extends EventEmitter {
         this.updateTodo(payload);
         break;
       }
-      case FETCH_TODOS: {
-        this.fetchTodos(payload);
+      case FETCH_TODO: {
+        this.fetchTodo(payload);
         break;
       }
       default:

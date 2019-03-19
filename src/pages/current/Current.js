@@ -42,11 +42,9 @@ export default class Current extends Component {
   }
 
   render() {
-    const { todos } = this.state;
-
     return (
       <div>
-        <h1>Current Todos</h1>
+        <h1>Current To-Do</h1>
         <div>
           <FormControlInput
             label="Todo text:"

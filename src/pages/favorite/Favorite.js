@@ -8,7 +8,7 @@ export default class Favorite extends Component {
   render() {
     return (
       <div>
-        <h1>Favorite Todos</h1>
+        <h1>Favorite To-Do</h1>
         <TodoPage todoCondition={todo => todo.favorite} />
       </div>
     );
