@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import Footer from '../../components/Footer';
-import Navigation from '../../components/Navigation';
-import RouteWithSubRoutes from '../../components/RouteWithSubRoutes';
+import { Footer, RouteWithSubRoutes, Navigation } from '../../components';
 
 export default class App extends Component {
   componentWillMount() {

@@ -5,7 +5,7 @@
 }
 
 .TodoItemForm .btn {
-  align-self: end;
+  align-self: flex-end;
   width: 10em;
 }
 

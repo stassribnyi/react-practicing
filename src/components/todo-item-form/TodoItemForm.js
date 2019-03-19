@@ -22,6 +22,11 @@ export default class TodoItemForm extends Component {
       return;
     }
 
+    this.setState({
+      disabled: true,
+      todoToAdd: ''
+    });
+
     this.props.onCreateTodo(this.state.todoToAdd);
   }
 
