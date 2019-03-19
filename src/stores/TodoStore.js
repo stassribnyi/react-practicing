@@ -18,8 +18,12 @@ class TodoStore extends EventEmitter {
     this.todos = state;
   }
 
-  getAll() {
-    return this.todos;
+  getAll(condition) {
+    if (typeof condition !== 'function') {
+      return this.todos;
+    }
+
+    return this.todos.filter(condition);
   }
 
   createTodo(todo) {
@@ -83,8 +87,8 @@ const todoStore = new TodoStore();
 dispatcher.register(todoStore.handleActions.bind(todoStore));
 
 const storeProxy = {
-  getAll: () => todoStore.getAll(),
   on: (...params) => todoStore.on(...params),
+  getAll: (...params) => todoStore.getAll(...params),
   removeListener: (...params) => todoStore.removeListener(...params)
 };
 

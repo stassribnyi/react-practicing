@@ -16,7 +16,7 @@ export default class App extends Component {
       <div className="App">
         <Navigation />
 
-        <div className="container top-buffer">
+        <div className="container">
           <div className="row">
             <div className="col-lg-12">
               {this.props.routes.map(route => (

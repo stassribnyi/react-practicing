@@ -24,19 +24,19 @@
 }
 
 .todo .favorite.favorite-checked {
-  background-image: url('../../assets/images/favorite-checked.png');
+  background-image: url('../../../assets/images/favorite-checked.png');
 }
 
 .todo .favorite.favorite-unchecked {
-  background-image: url('../../assets/images/favorite-unchecked.png');
+  background-image: url('../../../assets/images/favorite-unchecked.png');
 }
 
 .todo .complete.complete-checked {
-  background-image: url('../../assets/images/complete-checked.png');
+  background-image: url('../../../assets/images/complete-checked.png');
 }
 
 .todo .complete.complete-unchecked {
-  background-image: url('../../assets/images/complete-unchecked.png');
+  background-image: url('../../../assets/images/complete-unchecked.png');
 }
 
 .todo .badge.badge-delete {

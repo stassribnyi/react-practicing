@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Todo.css';
+import './TodoItem.css';
 
 export default props => {
   const { text, complete, favorite, onComplete, onFavorite, onDelete } = props;
