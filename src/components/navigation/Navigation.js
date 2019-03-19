@@ -36,8 +36,8 @@ export default class Navigation extends React.Component {
       { label: 'Complete', url: '/complete' }
     ];
 
-    const navLinks = navUrls.map(navLink => (
-      <li>
+    const navLinks = navUrls.map((navLink, index) => (
+      <li key={index}>
         <NavLink
           to={navLink.url}
           activeClassName="active-menu"

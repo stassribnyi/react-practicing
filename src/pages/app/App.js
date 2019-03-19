@@ -2,16 +2,36 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import { Footer, RouteWithSubRoutes, Navigation } from '../../components';
+import { LoaderStore as store } from '../../stores';
+
+import {
+  RouteWithSubRoutes,
+  Navigation,
+  Footer,
+  Loader
+} from '../../components';
 
 export default class App extends Component {
-  componentWillMount() {
-    this.props.history.push('/current');
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoaderVisible: false
+    };
+
+    this.updateState = this.updateState.bind(this);
+  }
+
+  updateState() {
+    this.setState({
+      isLoaderVisible: store.getState()
+    });
   }
 
   render() {
     return (
       <div className="App">
+        <Loader visible={this.state.isLoaderVisible} />
         <Navigation />
 
         <div className="container">
@@ -27,5 +47,15 @@ export default class App extends Component {
         <Footer />
       </div>
     );
+  }
+
+  componentWillMount() {
+    store.on('change', this.updateState);
+
+    this.props.history.push('/current');
+  }
+
+  componentWillUnmount() {
+    store.removeListener('change', this.updateState);
   }
 }

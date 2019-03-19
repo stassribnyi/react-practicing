@@ -2,15 +2,9 @@
   "todo": [
     {
       "text": "Master with React",
-      "complete": false,
-      "favorite": true,
-      "id": 8
-    },
-    {
-      "text": "Learn Redux",
-      "complete": false,
+      "complete": true,
       "favorite": false,
-      "id": 9
+      "id": 8
     },
     {
       "text": "Understand Flux",
@@ -29,6 +23,12 @@
       "complete": false,
       "favorite": true,
       "id": 12
+    },
+    {
+      "text": "Finish this ToDo app",
+      "complete": false,
+      "favorite": false,
+      "id": 13
     }
   ]
 }
