@@ -30,7 +30,7 @@ const routes = [
 const root = document.getElementById('root');
 
 ReactDOM.render(
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     <div>
       {routes.map(route => (
         <RouteWithSubRoutes key={route.path} {...route} />
