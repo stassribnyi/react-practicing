@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 import { RouteWithSubRoutes } from './components';
 
@@ -30,7 +30,7 @@ const routes = [
 const root = document.getElementById('root');
 
 ReactDOM.render(
-  <Router basename={process.env.PUBLIC_URL}>
+  <Router>
     <div>
       {routes.map(route => (
         <RouteWithSubRoutes key={route.path} {...route} />
